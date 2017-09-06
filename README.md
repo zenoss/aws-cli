@@ -12,13 +12,17 @@ Automated build on Docker Hub
 
 ## Usage
 
-You can use regular aws commands as follows:
+Environment vars with AWS credentials must be set for each command:
 
 ```
 AWS_ACCESS_KEY_ID="<id>"
 AWS_SECRETY_ACCESS_KEY="<key>"
 AWS_DEFAULT_REGION="<region>"
+```
 
+You can use regular aws commands as follows:
+
+```
 docker run --rm -t \
     -e "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" \
     -e "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" \
@@ -31,10 +35,6 @@ docker run --rm -t \
 There are also a few (one?) helper script(s) which can be run as follows:
 
 ```
-AWS_ACCESS_KEY_ID="<id>"
-AWS_SECRETY_ACCESS_KEY="<key>"
-AWS_DEFAULT_REGION="<region>"
-
 docker run --rm -t \
     -e "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" \
     -e "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" \
@@ -43,6 +43,19 @@ docker run --rm -t \
     zenoss/aws-cli \
     invalidate-n-wait.sh S11A16G5KZMEQD "/assets/* /js/* /css/app.css"
 ```
+
+Or, the primary reason this image was created, s3 sync, invalidate, and wait:
+
+```
+docker run --rm -t \
+    -e "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" \
+    -e "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" \
+    -e "AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION" \
+    -v "$PWD:/project" \
+    zenoss/aws-cli \
+	/bin/sh -c "aws s3 sync /project s3://staging.zing.ninja --delete && invalidate-n-wait.sh S11A16G5KZMEQD \"/*\""
+```
+
 
 ## Helper Scripts
 
