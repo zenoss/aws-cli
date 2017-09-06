@@ -41,18 +41,18 @@ docker run --rm -t \
     -e "AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION" \
     -v "$PWD:/project" \
     zenoss/aws-cli \
-	invalidate-n-wait.sh S11A16G5KZMEQD "/assets/* /js/* /css/app.css"
+    invalidate-n-wait.sh S11A16G5KZMEQD "/assets/* /js/* /css/app.css"
 ```
 
 ## Helper Scripts
 
 ```
 > invalidate-n-wait.sh --help
-Usage: ./invalidate-n-wait.sh DISTRIBUTION_ID "PATHS"
+Usage: invalidate-n-wait.sh DISTRIBUTION_ID "PATHS"
 Creates an invalidation for AWS Cloudfront for PATHS, and waits for completion
 
 Example:
-  ./invalidate-n-wait.sh S11A16G5KZMEQD "/assets/* /js/* /css/app.css"
+  invalidate-n-wait.sh S11A16G5KZMEQD "/assets/* /js/* /css/app.css"
 ```
 
 ## References
