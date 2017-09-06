@@ -28,7 +28,7 @@ docker run --rm -t \
     aws s3 sync /project s3://staging.zing.ninja --delete
 ```
 
-There are also a few helper scripts which can be run as follows:
+There are also a few (one?) helper script(s) which can be run as follows:
 
 ```
 AWS_ACCESS_KEY_ID="<id>"
@@ -47,7 +47,7 @@ docker run --rm -t \
 ## Helper Scripts
 
 ```
-> invalidate-and-wait.sh --help
+> invalidate-n-wait.sh --help
 Usage: ./invalidate-n-wait.sh DISTRIBUTION_ID "PATHS"
 Creates an invalidation for AWS Cloudfront for PATHS, and waits for completion
 
