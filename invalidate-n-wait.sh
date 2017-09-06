@@ -22,7 +22,7 @@ aws configure set preview.cloudfront true
 
 echo "creating invalidation for the following paths:"
 echo "    $PATHS"
-INVALIDATION_JSON=$(aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths $PATHS)
+INVALIDATION_JSON=$(aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "$PATHS")
 if [ $? -ne 0 ]; then
     echo "There was a problem creating the invalidation"
     exit $?
